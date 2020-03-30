@@ -1,0 +1,115 @@
+import random
+
+k = 10
+q = 10
+j = 10
+a = 11
+
+
+deste = [0,1,2,3,4,5,6,7,8,9,10, k , q , j , a]
+deste2 = ["karo" , "maça" , "kupa" ,"sinek"]
+
+
+
+oyuncu_eli = []
+bilg_eli = []
+çıkan = []
+oyuncueli= 0
+bilgeli = 0
+m =0
+
+while m == 0:
+    birinci = random.randint(2,14)
+    ikinci = random.choice(deste2)
+
+    if [birinci,ikinci] not in çıkan:
+
+
+        çıkan.append([birinci , ikinci])
+        oyuncu_eli.append(([ikinci , deste[birinci]]))
+        oyuncueli += deste[birinci]
+
+        birinci = random.randint(2, 12)
+        ikinci = random.choice(deste2)
+    else:
+        break
+
+
+    while True:
+
+        if [birinci, ikinci] not in çıkan:
+
+            çıkan.append([birinci, ikinci])
+            bilg_eli.append(([ikinci, deste[birinci]]))
+            bilgeli += deste[birinci]
+            break
+
+
+        else:
+            break
+
+
+    print("\nEliniz : {} , Değeri : {}" . format((oyuncu_eli) , oyuncueli))
+
+    i = 0
+    if oyuncueli > 21:
+        print("\nKAYBETTİNİZ")
+        i = 2
+        break
+
+
+    elif oyuncueli == 21 and bilgeli != 21:
+        print("21! KAZANDINIZ!!!")
+        i = 2
+        break
+
+
+    elif oyuncueli == 21 and bilgeli == 21 :
+        print("Oyuncu Ve Bilgisayar 21! Oyun Berabere!")
+        i = 2
+        break
+
+    elif bilgeli == 21 :
+        print("Bilgisayar 21! KAYBETTİNİZ!")
+        i = 2
+        break
+
+
+
+
+
+    secim = input("\nKart Almak İçin : (+) , Durmak İçin : (-)")
+    print("\n" ,20*"--")
+
+    if secim == "-"  :
+
+        while bilgeli < 17 and bilgeli <= oyuncueli:
+
+            birinci = random.randint(2, 12)
+            ikinci = random.choice(deste2)
+            if [birinci, ikinci] not in çıkan:
+                çıkan.append([birinci, ikinci])
+                bilg_eli.append(([ikinci, deste[birinci]]))
+                bilgeli += deste[birinci]
+
+
+
+        break
+
+    elif secim == "+" :
+        continue
+
+
+
+#kazanma şartları
+if i == 0:
+    print("Bilgisayar Eli : {}  Değer : {}".format(bilg_eli,bilgeli))
+
+    if bilgeli > 21 and 21 > oyuncueli :
+        print("KAZANDINIZ!!!")
+
+    elif (21 - bilgeli) > (21 - oyuncueli):
+        print("KAZANDINIZ!!!")
+
+    elif(21-oyuncueli) > (21-bilgeli):
+        print(("KAYBETTİNİZ"))
